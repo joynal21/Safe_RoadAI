@@ -1,0 +1,35 @@
+SafeRoad AI V6 - Faculty Feedback Improvements
+==============================================
+
+1. FOUR AMBULANCES
+   - Ambulance A-01: North/Airport side
+   - Ambulance A-02: Mirpur side
+   - Ambulance A-03: Central Dhaka side
+   - Ambulance A-04: Jatrabari side
+   - Existing V5 databases automatically receive A-04 without deleting current data.
+
+2. ACCIDENT CAN HAPPEN AT ANY GPS LOCATION
+   - Citizen can click anywhere on the report map.
+   - Citizen can use device current GPS.
+   - Citizen can manually enter valid latitude/longitude.
+   - Road name is optional for ambulance dispatch.
+   - The exact reported GPS is kept for the accident marker and destination.
+
+3. NEAREST AMBULANCE AUTO-SELECTION
+   - Admin Incident Management shows the nearest currently available ambulance and distance.
+   - On Dispatch Nearest, the backend recalculates Haversine GPS distance to every available ambulance.
+   - The closest available unit is assigned atomically.
+   - Busy units are excluded, so another incident can select another available ambulance.
+
+4. PROFESSIONAL UI/CSS
+   - Cleaner emergency command-center visual hierarchy.
+   - Improved sidebar, top bar, forms, input focus states, cards, tables, fleet cards and responsive layout.
+   - Dedicated accident GPS picker and dispatch explanation.
+
+DEMO TIP
+--------
+Use Demo Control -> Reset Demo before presentation. This returns all four ambulances to different base locations. You can then submit an accident from a different point and show that the nearest unit changes.
+
+VIVA NOTE
+---------
+This academic prototype uses Haversine straight-line GPS distance. A production deployment can use road-network travel time/traffic routing as the next improvement.

@@ -1,0 +1,13 @@
+DirectoryIndex index.php
+Options -Indexes
+
+# Do not serve deployment/source-support files directly from the web root.
+<FilesMatch "(^\.|Dockerfile$|\.sql$|\.md$|\.txt$|\.ini$|\.log$|\.sh$)">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

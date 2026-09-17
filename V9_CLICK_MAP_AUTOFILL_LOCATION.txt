@@ -1,0 +1,26 @@
+SafeRoad AI V9 - CLICK MAP TO AUTO-FILL REPORT LOCATION
+
+NEW BEHAVIOR
+------------
+1. Open Citizen -> Report Accident.
+2. Click any point on the accident map.
+3. Latitude and longitude are filled immediately.
+4. SafeRoad reverse-geocodes the point and automatically fills:
+   - Road / Area Name
+   - Location Details
+   - Nearest Landmark when available
+5. Moving the red marker runs the lookup again.
+6. Use My Current Location also runs the same road/place lookup.
+7. If online reverse lookup is unavailable, SafeRoad falls back to the local 20-road Dhaka Division registry and always keeps the exact GPS.
+
+TECHNICAL IMPLEMENTATION
+------------------------
+- Leaflet map captures the clicked latitude/longitude.
+- JavaScript calls api/reverse-location.php.
+- The PHP endpoint uses OpenStreetMap Nominatim reverse geocoding.
+- The result is copied into the accident report form.
+- No SQL/database schema change is required.
+
+VIVA EXPLANATION
+----------------
+Sir, when a user clicks a map point, Leaflet gives us the latitude and longitude. We send that GPS to a reverse-geocoding endpoint. It converts the coordinates into a human-readable road and location. Then JavaScript automatically fills the report fields. If the online lookup is unavailable, our local Dhaka road registry is used as a fallback, while the exact GPS is still preserved.

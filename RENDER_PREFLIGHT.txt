@@ -1,0 +1,16 @@
+SafeRoad AI Render preflight
+Date: 2026-09-17
+
+PASS - all PHP files passed syntax lint
+PASS - all static require/include targets exist with correct Linux case
+PASS - no lowercase config/db.php references remain
+PASS - Config/db.php exists and is used consistently
+PASS - no broken literal local href/src/form-action targets found
+PASS - no public import_db.php remains
+PASS - no old Aiven hostname or port is committed
+PASS - Render Docker entrypoint shell syntax is valid
+PASS - Docker setup uses Render runtime PORT and installs mysqli/pdo_mysql/curl
+PASS - PHP public error display is disabled in Docker
+
+Still required outside the code:
+Render Environment must contain current Aiven MySQL DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME.

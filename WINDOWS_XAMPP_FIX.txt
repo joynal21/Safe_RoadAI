@@ -1,0 +1,26 @@
+SafeRoad AI - Windows/XAMPP connection fix
+==========================================
+
+IMPORTANT:
+This package contains ONLY one database configuration path:
+    saferoad/Config/db.php
+
+Do NOT create a second folder named "Config" beside "config" on Windows.
+Windows file systems are normally case-insensitive, so "Config" and "config"
+can collide. An older package accidentally contained both. Depending on ZIP
+extraction order, the tiny compatibility wrapper could overwrite the real
+connection file, leaving $conn undefined on admin-dashboard.php and
+admin-reports.php.
+
+Install cleanly:
+1. Stop Apache/MySQL in XAMPP.
+2. Delete or rename your old C:\xampp\jp\htdocs\saferoad folder.
+3. Extract/copy the NEW saferoad folder from this package into htdocs.
+   Do not merge it over the old folder.
+4. Start Apache and MySQL.
+5. Open http://localhost/saferoad/ (or your matching XAMPP path/virtual setup).
+6. Hard refresh the browser with Ctrl+F5.
+
+The real connection file creates/selects saferoad_ai and runs the core schema
+setup. If MySQL is stopped or your root password is not blank, it will show a
+specific database connection/setup error instead of an undefined $conn error.

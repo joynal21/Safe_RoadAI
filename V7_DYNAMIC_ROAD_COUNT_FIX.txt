@@ -1,0 +1,20 @@
+SafeRoad AI V7 - Dynamic Same-Road Accident Count Fix
+
+What changed
+------------
+1. Road-risk numbers are not treated as fixed presentation values.
+2. Historical 30-day events remain as the starting history, but every newly submitted report is added live.
+3. If a report contains a known road name (for example Mirpur Road / Mirpur Rd), it is matched to that same canonical road even if the GPS point is on another section of the road.
+4. Repeated reports on the same road therefore increase the same road total: 7 history + 1 new = 8, then +1 again = 9.
+5. Common road-name variants such as Rd/Ave and spelling variants are normalized.
+6. If road name is not supplied, GPS matching is still used for reports close to a known road.
+7. The Live Map risk panel now shows History + New Reports + Live Total so the update is visible to the instructor.
+8. No manual SQL import/change is required. This uses the current reports and road_accident_history tables.
+
+Demo
+----
+- Open Live Map and note Mirpur Road count.
+- Submit a new accident with Road / Area Name = Mirpur Road (GPS may be at another point on Mirpur Road).
+- Refresh/open Live Map or wait for its 5-second refresh.
+- Mirpur Road 'new reports' and total count increase by 1.
+- Submit another Mirpur Road accident; the same road count increases again instead of making a separate fixed number.

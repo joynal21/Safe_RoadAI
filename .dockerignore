@@ -1,0 +1,13 @@
+.git
+.github
+.env
+.env.*
+*.zip
+.DS_Store
+node_modules
+vendor
+**/*.md
+**/*.txt
+database/*.sql
+assets/uploads/reports/*
+!assets/uploads/reports/.gitkeep

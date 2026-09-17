@@ -1,0 +1,68 @@
+SafeRoad AI V8 - Dhaka Division Road Coverage + Smart What-If Demo
+=================================================================
+
+WHAT CHANGED
+------------
+1. Road-risk analytics now has 20 registered road corridors/hotspots across all 13 districts of Dhaka Division:
+   Dhaka, Gazipur, Narayanganj, Narsingdi, Tangail, Manikganj, Munshiganj,
+   Faridpur, Kishoreganj, Rajbari, Madaripur, Shariatpur and Gopalganj.
+
+2. SafeRoad is NOT limited to those 20 roads.
+   If a citizen submits an accident on another road, the road name is normalized
+   and grouped as a DYNAMIC road/spot. Repeated reports on the same road increase
+   the same count automatically.
+
+3. The map no longer changes the user's zoom every 5 seconds.
+   Live data still refreshes, but fitBounds only runs on the first map load.
+   Use the "Fit Dhaka Division" button when you want to reset the view manually.
+
+4. Risk markers use Leaflet circleMarker GPS points.
+   This keeps the risk dot attached to its geographic location during zoom in/out.
+   The accident count is displayed inside the dot.
+
+5. New Smart What-If Emergency Simulator:
+   - Press "Smart What-If Simulator".
+   - Click ANY location on the online map.
+   - The system checks only AVAILABLE ambulances.
+   - It calculates Haversine distance to every available ambulance.
+   - It ranks the units and highlights the nearest one.
+   - It estimates response time from distance and ambulance speed.
+   - It draws a visual response line.
+   - It DOES NOT create a report or change the database.
+
+HOW TO EXPLAIN IT TO FACULTY
+----------------------------
+"Our road analytics has 20 registered Dhaka Division corridors for the academic
+history dataset, but the system is not restricted to them. If a report comes from
+a new road, the backend creates a dynamic road group from the submitted road name.
+If the same road is reported again, its count increases. The map refreshes every
+five seconds without resetting the operator's zoom. Risk dots are GPS-anchored
+Leaflet circle markers."
+
+For the What-If Simulator:
+"This is a decision-support preview, not a trained AI model. When I click a possible
+accident location, the system uses the current ambulance database, removes busy
+units, calculates Haversine distance and ranks the remaining ambulances. The nearest
+available unit is highlighted with an estimated response time. It does not save or
+dispatch anything until a real verified report is used."
+
+IMPORTANT DATA NOTE
+-------------------
+The historical 30-day road-risk rows are SEEDED ACADEMIC DEMO DATA. New citizen
+reports are real database rows inside this prototype and are added to the road count.
+Do not tell the faculty that the historical data came from police/government unless
+you later replace it with an official dataset.
+
+INSTALLATION
+------------
+No manual SQL command is needed when upgrading from V7.
+The schema setup automatically adds missing historical rows for the newly registered
+roads. Keep your existing saferoad_ai database.
+
+After replacing the project folder:
+1. Start Apache + MySQL.
+2. Open SafeRoad once (the auto-migration runs through Config/db.php).
+3. Press Ctrl+F5 to clear old JS/CSS cache.
+4. Open Live Map.
+5. Press "Fit Dhaka Division" to see the full road coverage.
+6. Press "Smart What-If Simulator" and click different locations.
